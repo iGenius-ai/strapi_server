@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "posts",
+  "collectionName": "articles",
   "info": {
-    "singularName": "post",
-    "pluralName": "posts",
-    "displayName": "Post"
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article"
   },
   "options": {
     "draftAndPublish": true
@@ -15,15 +15,6 @@
     }
   },
   "attributes": {
-    "title": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "required": true
-    },
     "body": {
       "pluginOptions": {
         "i18n": {
@@ -33,12 +24,19 @@
       "type": "richtext",
       "required": true
     },
+    "title": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true,
+      "maxLength": 200
+    },
     "cover": {
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ],
       "type": "media",
       "multiple": false,
@@ -46,7 +44,14 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "articles"
     },
     "slug": {
       "pluginOptions": {
@@ -56,12 +61,6 @@
       },
       "type": "uid",
       "targetField": "title"
-    },
-    "author": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "posts"
     }
   }
 }

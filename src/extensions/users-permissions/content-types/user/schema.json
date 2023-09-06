@@ -66,10 +66,10 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "posts": {
+    "articles": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::post.post",
+      "target": "api::article.article",
       "mappedBy": "author"
     }
   }
